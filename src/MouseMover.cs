@@ -20,7 +20,7 @@ namespace Hacon.MouseTools
 
         public bool TryMouseRepositioning()
         {
-            Print("TryMouseRepositioning start");
+         //   Print("TryMouseRepositioning start");
             // get foreground window
             var foregroundWindowHandle = Vanara.PInvoke.User32.GetForegroundWindow();
             Vanara.PInvoke.User32.GetWindowRect(foregroundWindowHandle, out Vanara.PInvoke.RECT windowRect);
@@ -45,6 +45,7 @@ namespace Hacon.MouseTools
                     && windowRect.top <= cursorPos.Y
                     && windowRect.bottom >= cursorPos.Y)
                 {
+                    Print("The mouse cursor is already over the current window");
                     return true;
                 }
                 else
@@ -56,13 +57,14 @@ namespace Hacon.MouseTools
                     Vanara.PInvoke.User32.SetCursorPos(x + 1, y + 1); // sometimes cursor is not positioned right
                     Vanara.PInvoke.User32.SetCursorPos(x, y); // calling twice sets the correct postion
 
-                    Print("TryMouseRepositioning end");
+                    // Print("TryMouseRepositioning end");
                     return true;
                 }
             }
             else
             {
-                Print("TryMouseRepositioning end");
+                //      Print("TryMouseRepositioning end");
+                Print("Mouse cursor not set");
                 return false;
             }
         }
